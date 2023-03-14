@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+
+</head>
+<body>
+    <label for="">techno</label>
+    <label for="">    <input type="radio" name="techno" value="hello" id="r1">
+        ASP   <span id="data"></span></label>
+    <label for="">     <input type="radio" name="techno" value="nalla" id="r2">     dotnet <span id="data2"></span></label>
+
+    
+</body>
+<script>
+
+$("input[id='r1']").change(function() {
+    if ("input[id='r1']:checked") {
+        $("#data").text("hello")
+    }
+    else{
+        $("#data").text("")
+
+    }
+})
+
+$("input[id='r2']").change(function() {
+    $("#data2").text("hello")
+})
+
+
+
+</script>
+</html>
