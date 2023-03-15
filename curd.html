@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite App</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.js"></script>
+  </head>
+  <style>
+    table tr td {
+      text-align: center;
+      border-collapse: collapse;
+      border: 2px solid black;
+      padding: 20px;
+    }
+  </style>
+  <body>
+<label for="">Name</label>
+<input  name="name" id="name"><br>
+<label for="">Email</label>
+<input type="email" name="name" id="Email"><br>
+
+<label for="">Gender</label><br>
+<label for="">Male</label>
+<input type="radio" name="Gender" value="Male"  >
+<label for="">Female</label>
+<input type="radio" name="Gender" value="Female"><br>
+<label for="">Status</label><br>
+<label for="">Active</label>
+<input type="radio" name="status" value="Active" >
+<label for="">Inactive</label>
+<input type="radio" name="status" value="Inactive"><br>
+
+    <button id="btn">Fetch</button>
+    <button id="post">Post</button>
+    <button id="delete">delete</button>
+
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>       
+          <th>Name</th>
+          <th>Email</th>
+          <th>Gender</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody id="tbody1">
+
+      </tbody>
+    </table>
+  </body>
+  <script>
+    $(document).ready(function(){
+$("#btn").click(function(){
+  var settings = {
+  "url": "https://gorest.co.in/public/v2/users",
+  "method": "GET",
+  "timeout": 0,
+  "headers": {
+    "Authorization": "Bearer 0655682810fb5aa69f4b39f5fdcd3872460a939260d0c0ee0b3d7a41915562b9"
+  },
+};
+
+$.ajax(settings).done(function (response) {
+
+  let placeholder=document.getElementById("tbody1")
+  let out ='';
+  for(let products of response){
+    out+=`
+    <tr>
+  <td>${products.id}</td>
+  <td>${products.name}</td>
+  <td>${products.email}</td>
+  <td>${products.gender}</td>
+  <td>${products.status}</td>
+</tr>
+    
+    `
+  }
+  placeholder.innerHTML=out;
+});
+  
+
+
+    })
+
+
+  
+
+
+
+
+$("#post").click(function(){
+var name=document.getElementById("name").value;
+var mail=document.getElementById("Email").value;
+var gender=$("input[type='radio'][name='Gender']:checked").val();
+var status=$("input[type='radio'][name='status']:checked").val();
+var myHeaders = new Headers();
+myHeaders.append("Authorization", "Bearer 0655682810fb5aa69f4b39f5fdcd3872460a939260d0c0ee0b3d7a41915562b9");
+myHeaders.append("Content-Type", "application/json");
+
+var raw = JSON.stringify({
+  "name": name,
+  "email": mail,
+  "gender": gender,
+  "status": status
+});
+console.log(raw)
+var requestOptions = {
+  method: 'POST',
+  headers: myHeaders,
+  body: raw,
+  redirect: 'follow'
+};
+
+fetch("https://gorest.co.in/public/v2/users", requestOptions)
+  .then(response => response.text())
+  .then(result => console.log(result))
+  .catch(error => console.log('error', error));
+})
+    })
+
+
+    $("#delete").click(function(){
+      var settings = {
+  "url": "https://gorest.co.in/public/v2/users",
+  "method":"DELETE",
+  "timeout": 0,
+  "headers": {
+    "Authorization": "Bearer 0655682810fb5aa69f4b39f5fdcd3872460a939260d0c0ee0b3d7a41915562b9"
+  },
+};
+
+$.ajax(settings).done(function (response) {
+
+
+});
+
+    })
+    
+  </script>
+</html>
