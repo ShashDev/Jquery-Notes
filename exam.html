@@ -10,37 +10,35 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 
 <body>
-<ul id ="ul1"></ul>
-    <li id="l1"></li>
-    <li id="l2"></li>
+
 
 
 </body>
 <script>
-    let products = [{ "ProductID": 1, "Name": "Entraintment", ParentID: "null" }, 
-    { "ProductID": 2, "Name": "Food", ParentID: "null" },
+    let products = [{ "ProductID": 1, "Name": "Entertainment", ParentID: null }, 
+    { "ProductID": 2, "Name": "Food", ParentID: null },
      { "ProductID": 3, "Name": "toy", ParentID: 1 }, 
      { "ProductID": 4, "Name": "speaker", ParentID: 1 },
       { "ProductID": 5, "Name": "Milk", ParentID: 2 }, 
-      { "ProductID": 6, "Name": "vegatables", ParentID: 2 },]
-
+      { "ProductID": 6, "Name": "vegatables", ParentID: 2 },
     
-  
-for(let i  of products){
-    console.log(i)
-    if(i.ParentID=="null"){
-     var a=   $("#ul1").append(i.Name)
-    }
-    if(i.ParentID==1){
-     var b=   $("#l1").append(i.Name)
-    }
-    if(i.ParentID==2){
-       var c= $("#l2").append(i.Name)
-    }
-}
-$("#ul1").append(a)
-$("#l1").append(b)
-$("#l2").append(b)
+    ]
+
+    let list = $('<ul></ul>');
+$(products).each((index, element) => {
+  let parent1 = $('<li></li>')
+    .filter(() => element.ParentID == null)
+    .text(element.Name)
+    .appendTo(list);
+
+var list2=$('<ul> <ul>');
+    $(products).each((index,v1)=>{
+        $('<li></li>').filter(()=>v1.ParentID==element.ProductID).text(v1.Name).appendTo(list2)
+    })
+    list2.appendTo(list);
+});
+$(list).appendTo('body')
+
 
   
 </script>
