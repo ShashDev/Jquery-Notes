@@ -10,6 +10,9 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 
 <body>
+
+
+
 </body>
 <script>
     let products = [{ "ProductID": 1, "Name": "Entertainment", ParentID: null },
@@ -20,22 +23,16 @@
     { "ProductID": 6, "Name": "vegatables", ParentID: 2 },
 
     ]
+    var div1=$('<ul></ul>')
 
-    let list = $('<ul></ul>');
-    $(products).each((index, element) => {
-        let parent1 = $('<li></li>')
-            .filter(() => element.ParentID == null)
-            .text(element.Name)
-            .appendTo(list);
+   for(let i of products){
+if(i.ParentID==null){
+    // $('<li><li>').text(i.Name).appendTo(div1)
+        div1.append().text(i.Name)
 
-        var list2 = $('<ul> <ul>');
-        $(products).each((index, v1) => {
-            $('<li></li>').filter(() => v1.ParentID == element.ProductID).text(v1.Name).appendTo(list2)
-        })
-        list2.appendTo(list);
-    });
-    $(list).appendTo('body')
-
+}
+   }
+   $(div1).appendTo('body')
 </script>
 
 </html>
