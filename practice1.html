@@ -1,38 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+
 </head>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-
 <body>
-    <h3>Select tech</h3>
-    <div>
-        <label for=""> <input type="radio" name="techno" value="php">
-            PHP <span id="php"></span></label>
-        <label for=""> <input type="radio" name="techno" value="react">
-            REACT <span id="react"></span></label>
-        <label for=""> <input type="radio" name="techno" value="js">
-            JS <span id="js"></span> </label>
-        <label for=""> <input type="radio" name="techno" value="HTML">
-            HTML <span id="HTML"></span></label>
+    <select  id="country">
 
-    </div>
+        <option value="Select">Select Country
+        <option value="India">India
+        <option value="US">US
+        <option value="Australia">Australia
+        <option value="Srilanka">Srilanka
 
+    </select>
+    <h4 id ="ss">Your selected country   : <span id="scountry">
+        </span>
+        <span id="all">
+            <label> India ,</label>
+            <label> US ,</label>
+            <label> Australia ,</label>
+            <label> Srilanka </label></span>
+    </h4>
+
+
+    </option>  
 </body>
 <script>
+    $("#country").click(function(){
+        var a=$("#country").val()
+        if(a!="Select"){
+            $("#all").hide()
+            $("#scountry").text(a)
+        }
+        else{
+            $("#scountry").text("+")
 
-    $("input").click(function () {
-       $("span").hide();
-       var a=$('input[name="techno"]:checked').val()
-$(`#${a}`).show().text(`You have selected ${a} technology`)
-    });
+            $("#all").show()
 
-
+        }
+        
+    })
 </script>
-
 </html>
